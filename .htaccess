@@ -1,0 +1,8 @@
+Options -Indexes
+DirectoryIndex index.html
+
+<FilesMatch "^(README\.md|Makefile|router\.php)$">
+    Require all denied
+</FilesMatch>
+
+RedirectMatch 404 /(\.git|tests|guidelines)(/|$)

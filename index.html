@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Privacy Trainer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Data Privacy Trainer</h1>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-mode="flash" aria-selected="true">Flashcards</button>
+      <button role="tab" data-mode="quiz" aria-selected="false">Multiple choice</button>
+    </nav>
+    <div class="filters">
+      <label>Topic
+        <select id="topic"></select>
+      </label>
+      <label class="check"><input type="checkbox" id="shuffle" checked> Shuffle</label>
+    </div>
+  </header>
+
+  <main>
+    <!-- Flashcards -->
+    <section id="flash" class="mode">
+      <div class="progress"><div class="bar"><span id="flash-bar"></span></div><span id="flash-count"></span></div>
+
+      <article class="card" id="flash-card">
+        <div class="meta"><span id="flash-id"></span><span id="flash-topic"></span></div>
+        <div class="question md" id="flash-q"></div>
+        <div class="answer md" id="flash-a" hidden></div>
+      </article>
+
+      <div class="controls" id="flash-controls">
+        <button class="primary" id="flash-reveal">Show answer <kbd>Space</kbd></button>
+        <button class="again" id="flash-again" hidden>Again <kbd>←</kbd></button>
+        <button class="good" id="flash-good" hidden>Got it <kbd>→</kbd></button>
+      </div>
+
+      <div class="done" id="flash-done" hidden>
+        <h2>Deck complete</h2>
+        <p>You marked every card as known.</p>
+        <button class="primary" id="flash-restart">Start over</button>
+      </div>
+    </section>
+
+    <!-- Multiple choice -->
+    <section id="quiz" class="mode" hidden>
+      <div class="progress"><div class="bar"><span id="quiz-bar"></span></div><span id="quiz-count"></span></div>
+
+      <article class="card" id="quiz-card">
+        <div class="meta"><span id="quiz-id"></span><span id="quiz-score"></span></div>
+        <div class="question md" id="quiz-q"></div>
+        <ol class="options" id="quiz-options"></ol>
+        <details class="explain" id="quiz-explain" hidden>
+          <summary>Show full answer</summary>
+          <div class="md" id="quiz-a"></div>
+        </details>
+      </article>
+
+      <div class="controls">
+        <button class="primary" id="quiz-next" disabled>Next <kbd>Enter</kbd></button>
+      </div>
+
+      <div class="done" id="quiz-done" hidden>
+        <h2 id="quiz-result"></h2>
+        <p id="quiz-result-text"></p>
+        <div class="controls">
+          <button class="again" id="quiz-retry">Retry missed</button>
+          <button class="primary" id="quiz-restart">Start over</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="assets/cards.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
